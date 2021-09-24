@@ -73,12 +73,13 @@ def get_grade_by_github_title(github, title):
     QUERY = """ 
         SELECT grade
         FROM grades
-        WHERE github = :github, title = :title
+        WHERE github = :github
+        AND title = :title
         """
     db_cursor = db.session.execute(QUERY, {'title': title, 'github': github})
     row = db_cursor.fetchone()
 
-    print(f'Title: {row[0]} GitHub: {github} Grade: {row[1]}')
+    print(f'Title: {title} GitHub: {github} Grade: {row[0]}')
 
 
 def assign_grade(github, title, grade):
